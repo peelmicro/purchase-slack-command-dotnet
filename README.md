@@ -1,6 +1,6 @@
 # Purchase Slack Command
 
-This is the code for the tutorial on _How to create a Slack bot to automate tasks for you_.
+This is the code adapted to .Net Core for the tutorial on _How to create a Slack bot to automate tasks for you_.
 
 The key learnings of this course include:
 
