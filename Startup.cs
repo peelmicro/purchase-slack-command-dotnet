@@ -28,7 +28,7 @@ namespace PurchaseSlackCommandDotNet
             services
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            var slackBotToken = Configuration["slackSettings:SlackBotToken"];
+            var slackBotToken = Configuration["SlackSettings:SlackBotToken"];
             services.AddTransient<ISlackService>(s => new SlackService(slackBotToken));                
         }
 

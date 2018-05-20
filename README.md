@@ -4,7 +4,7 @@ This is the code adapted to .Net Core for the tutorial on _How to create a Slack
 
 The key learnings of this course include:
 
-* how to create a slash command for Slack
+* how to create a Slack command for Slack
 * how to create an interactive message with buttons
 * how to process a button being clicked in a Slack message
 * how to send direct messages to users in Slack from a Slack bot
@@ -14,6 +14,7 @@ The key learnings of this course include:
 # Before executing it, setting credentials and variables must be updated
 
 1st) Rename appsettings.Development.example.json to appsettings.Development.json
+
 2nd) Update your own values
 
 # Follow the course on

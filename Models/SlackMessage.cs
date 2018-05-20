@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -15,6 +16,8 @@ namespace PurchaseSlackCommandDotNet.Models
         [JsonProperty("subtype")]
         public string SubType {get; set;}
         [JsonProperty("ts")]
-        public string Ts {get; set;}    
+        public string Ts {get; set;}
+        [JsonProperty("attachments")]
+        public List<SlackAttachment> Attachments { get; set; }        
     }  
 }
