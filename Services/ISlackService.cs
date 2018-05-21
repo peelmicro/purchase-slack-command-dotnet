@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using PurchaseSlackCommandDotNet.Models;
+using PurchaseSlackCommandDotNet.Models.Slack;
 
 namespace PurchaseSlackCommandDotNet.Services 
 {

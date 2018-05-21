@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace PurchaseSlackCommandDotNet.Models
+namespace PurchaseSlackCommandDotNet.Models.Slack
 {
     public class SlackMessage {
         [JsonProperty("text")]

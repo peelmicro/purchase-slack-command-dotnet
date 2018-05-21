@@ -17,5 +17,8 @@ The key learnings of this course include:
 
 2nd) Update your own values
 
+# add FirebaseCoreAdmin to have access to Firebase database
+dotnet add package FirebaseDatabase.net --version 3.3.3
+
 # Follow the course on
 https://www.udemy.com/how-to-create-a-slack-bot-to-automate-tasks-for-you
