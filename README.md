@@ -17,8 +17,11 @@ The key learnings of this course include:
 
 2nd) Update your own values
 
-# add FirebaseCoreAdmin to have access to Firebase database
+# add FirebaseDatabase to have access to Firebase database
 dotnet add package FirebaseDatabase.net --version 3.3.3
+
+# In order to run the Ceo Personal Assistant
+http://localhost:9647/purchase?minutes=60
 
 # Follow the course on
 https://www.udemy.com/how-to-create-a-slack-bot-to-automate-tasks-for-you

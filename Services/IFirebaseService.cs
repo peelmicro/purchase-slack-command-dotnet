@@ -7,6 +7,7 @@ namespace PurchaseSlackCommandDotNet.Services
   public interface IFirebaseService
   {
     Task<string> SavePurchaseRequestAsync(string userId, string item);
+    Task<List<PurchaseRequestModel>> ReadAllPurchaseRequestsAsync();
     Task<PurchaseRequestModel> ReadPurchaseRequestAsync(string key);
     Task RecordPurchaseRequestDecisionAsync(string key, bool approved);
   }

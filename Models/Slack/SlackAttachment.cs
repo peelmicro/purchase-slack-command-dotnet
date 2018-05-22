@@ -19,8 +19,9 @@ namespace PurchaseSlackCommandDotNet.Models.Slack
     	public string AuthorIcon {get; set;}	            	
       [JsonProperty("title")]
     	public string Title {get; set;}		
-      [JsonProperty(propertyName: "title_link")]
+      [JsonProperty("title_link")]
     	public string TitleLink {get; set;}	
+			[JsonProperty("text")]
     	public string Text {get; set;}	  
       [JsonProperty("image_url")]
     	public string ImageUrl {get; set;}	    
@@ -32,11 +33,11 @@ namespace PurchaseSlackCommandDotNet.Models.Slack
     	public string FooterIcon {get; set;}            
       [JsonProperty("ts")]
     	public string Ts {get; set;}
-			[JsonProperty(propertyName: "callback_id")]
+			[JsonProperty("callback_id")]
 			public string CallbackId { get; set; }
-			[JsonProperty(propertyName: "fields")]
+			[JsonProperty("fields")]
     	public List<SlackField> Fields { get; set; }
-			[JsonProperty(propertyName: "actions")]
+			[JsonProperty("actions")]
     	public List<SlackAction> Actions { get; set; }
 
   }

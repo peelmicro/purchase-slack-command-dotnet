@@ -45,13 +45,20 @@ namespace PurchaseSlackCommandDotNet.Services
 
     public async Task<PurchaseRequestModel> ReadPurchaseRequestAsync(string key)
     {
-        var records = await _firebaseClient
+        var record = await _firebaseClient
             .Child(PurchaseRequestPath)
             .Child(key)
             .OnceSingleAsync<PurchaseRequestModel>();
-        return records;
+        return record;
     }
 
+    public async Task<List<PurchaseRequestModel>> ReadAllPurchaseRequestsAsync()
+    {
+        var records = await _firebaseClient
+            .Child(PurchaseRequestPath)
+            .OnceAsync<PurchaseRequestModel>();
+        return records.Select(record => record.Object).ToList();
+    }
     public async Task<string> SavePurchaseRequestAsync(string userId, string item)
     {
         var result = await _firebaseClient

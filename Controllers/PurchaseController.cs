@@ -16,11 +16,14 @@ namespace PurchaseSlackCommandDotNet.Controllers
     {
         private readonly ISlackService _slackService;
         private readonly IFirebaseService _firebaseService;
+        private readonly ICeoPersonaAsistantService _ceoPersonaAsistantService;
         private readonly string _ceoMemberId;
-        public PurchaseController(ISlackService slackService, IFirebaseService firebaseService, IConfiguration configuration)
+        public PurchaseController(ISlackService slackService, IFirebaseService firebaseService,
+            ICeoPersonaAsistantService ceoPersonaAsistantService, IConfiguration configuration)
         {
             _slackService = slackService;
             _firebaseService = firebaseService;
+            _ceoPersonaAsistantService = ceoPersonaAsistantService;
             _ceoMemberId = configuration["SlackSettings:CeoMemberId"];
         }
 
@@ -28,42 +31,48 @@ namespace PurchaseSlackCommandDotNet.Controllers
         [Produces("application/json")]
         public async Task<IActionResult> Post([FromForm] SlackCommandRequest request)
         {
-        if (request == null) return BadRequest();
+            if (request == null) return BadRequest();
 
-        var key = await _firebaseService.SavePurchaseRequestAsync(request.UserId, request.Text);
+            var key = await _firebaseService.SavePurchaseRequestAsync(request.UserId, request.Text);
 
-        await _slackService.SendDirectMessage(
-            _ceoMemberId,
-            $"Hi! <@{request.UserId}> would like to order *{request.Text}*. Do you authorise this purchase request?",
-            new List<SlackAttachment> {
-                    new SlackAttachment {
-                        Text = "Do you authorise this purchase request?",
-                        CallbackId = "purchase_request",
-                        Actions = new List<SlackAction> {
-                            new SlackAction {
-                                Name = key,
-                                Text = "Yes, I approve",
-                                Type = "button",
-                                Value = "approved"
-                            },
-                            new SlackAction {
-                                Name = key,
-                                Text = "No",
-                                Type = "button",
-                                Value = "declined"
+            await _slackService.SendDirectMessage(
+                _ceoMemberId,
+                $"Hi! <@{request.UserId}> would like to order *{request.Text}*. Do you authorise this purchase request?",
+                new List<SlackAttachment> {
+                        new SlackAttachment {
+                            Text = "Do you authorise this purchase request?",
+                            CallbackId = "purchase_request",
+                            Actions = new List<SlackAction> {
+                                new SlackAction {
+                                    Name = key,
+                                    Text = "Yes, I approve",
+                                    Type = "button",
+                                    Value = "approved"
+                                },
+                                new SlackAction {
+                                    Name = key,
+                                    Text = "No",
+                                    Type = "button",
+                                    Value = "declined"
+                                }
                             }
                         }
-                    }
-            }
-        );
-        var response = new SlackCommandResponse
-        {
-            Text = $"Thanks for your puchase request of *{request.Text}*. We will message the CEO now for authorisation"
-        };
-        return Ok(response);
+                }
+            );
+            var response = new SlackCommandResponse
+            {
+                Text = $"Thanks for your puchase request of *{request.Text}*. We will message the CEO now for authorisation"
+            };
+            return Ok(response);
         }
 
-
+        [HttpGet]
+        [Produces("application/json")]
+        public async Task<IActionResult> Get(int? minutes) {
+            if (minutes == null) return BadRequest();
+            await _ceoPersonaAsistantService.RemindPurchasesNotDecided((int)minutes);
+            return Ok("Sent");
+        }
     }
 
 }

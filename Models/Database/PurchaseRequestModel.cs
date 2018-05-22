@@ -5,11 +5,11 @@ namespace PurchaseSlackCommandDotNet.Models.Database
   {
     [JsonProperty("approved")]
     public bool? Approved { get; set; }
-    [JsonProperty("item")]
+    [JsonProperty("item", NullValueHandling = NullValueHandling.Ignore)]
     public string Item { get; set; }
-    [JsonProperty("timestamp")]
-    public long TimeStamp { get; set; }
-    [JsonProperty("userid")]
+    [JsonProperty("timestamp", NullValueHandling = NullValueHandling.Ignore)]
+    public long? TimeStamp { get; set; }
+    [JsonProperty("userId", NullValueHandling = NullValueHandling.Ignore)]
     public string UserId { get; set; }
   }
 }
