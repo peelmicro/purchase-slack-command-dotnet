@@ -13,7 +13,8 @@ namespace PurchaseSlackCommandDotNet.Services
         private readonly IFirebaseService _firebaseService;        
         private readonly string _ceoMemberId;
 
-        public CeoPersonaAsistantService(ISlackService slackService, IFirebaseService firebaseService, IConfiguration configuration)
+        public CeoPersonaAsistantService(ISlackService slackService, IFirebaseService firebaseService
+            , IConfiguration configuration)
         {
              _slackService = slackService;
             _firebaseService = firebaseService;
