@@ -66,13 +66,6 @@ namespace PurchaseSlackCommandDotNet.Controllers
             return Ok(response);
         }
 
-        [HttpGet]
-        [Produces("application/json")]
-        public async Task<IActionResult> Get(int? minutes) {
-            if (minutes == null) return BadRequest();
-            await _ceoPersonaAsistantService.RemindPurchasesNotDecided((int)minutes);
-            return Ok("Sent");
-        }
     }
 
 }
